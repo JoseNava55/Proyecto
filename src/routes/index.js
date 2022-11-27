@@ -1,7 +1,7 @@
 import { Router } from "express"
 const router = Router();
 import {renderSignUpForm,signup,renderSigninForm,signin,logout} from "../controllers/user.controller.js"
-
+import { renderSignUpFormad,adminap,renderSigninFormad,adminin,logoutad } from "../controllers/admin.controller.js";
 const passport= require('passport');
 
 
@@ -32,6 +32,21 @@ router.get("/logout", logout);
 router.get('/pusuarios',isAuthenticated,(req, res, next)=>{
   res.render('pusuarios');
 });
+
+router.get("/adminap",renderSignUpFormad);
+
+router.post("/adminap", adminap);
+
+router.get("/adminin", renderSigninFormad);
+
+router.post("/adminin", adminin);
+
+router.get("/logout", logoutad);
+
+router.get('/cursosad',(req, res, next)=>{
+  res.render('/cursosad');
+});
+
 
 function isAuthenticated (req, res, next) {
     if (req.isAuthenticated()) {

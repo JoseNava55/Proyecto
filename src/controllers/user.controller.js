@@ -49,6 +49,6 @@ export const logout = async (req, res, next) => {
   await req.logout((err) => {
     if (err) return next(err);
     req.flash("success_msg", "Ya no estas logeado.");
-    res.redirect("/signin");
+    res.redirect("/");
   });
 };
