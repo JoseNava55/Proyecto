@@ -1,11 +1,7 @@
 import { Router } from "express"
 const router = Router();
-import {renderSignUpForm,signup,renderSigninForm,signin,logout} from "../controllers/user.controller.js"
-import { renderSignUpFormad,adminap,renderSigninFormad,adminin,logoutad } from "../controllers/admin.controller.js";
+import {renderSignUpForm,signup,renderSigninForm,signin,logout} from "../controllers/user.controller.js";
 const passport= require('passport');
-
-
-
 
 router.get('/',(req, res, next)=>{
   res.render('index');
@@ -15,7 +11,7 @@ router.get('/about',(req, res, next)=>{
   res.render('about');
 });
 
-router.get('/cursos',(req, res, next)=>{
+router.get('/cursos',isAuthenticated,(req, res, next)=>{
   res.render('cursos');
 });
 
@@ -33,27 +29,26 @@ router.get('/pusuarios',isAuthenticated,(req, res, next)=>{
   res.render('pusuarios');
 });
 
-router.get("/adminap",renderSignUpFormad);
-
-router.post("/adminap", adminap);
-
-router.get("/adminin", renderSigninFormad);
-
-router.post("/adminin", adminin);
-
-router.get("/logout", logoutad);
-
-router.get('/cursosad',(req, res, next)=>{
-  res.render('/cursosad');
+router.post('/adminin',(req, res, next)=>{
+  if(req.body.password == "1234" && (req.body.emailad)== "admin@gmail.com"){
+    res.render('adminp');
+  }
+  else{
+    req.flash("error_msg", "Datos incorrectos");
+    res.redirect('/adminin');
+  }
 });
 
+router.get('/adminin',(req, res, next)=>{
+  res.render('adminin');
+});
 
 function isAuthenticated (req, res, next) {
     if (req.isAuthenticated()) {
       return next();
     }
     req.flash("error_msg", "Usted no esta autorizado.");
-    res.redirect("/signin");
+    res.redirect("/");
   };
 
 

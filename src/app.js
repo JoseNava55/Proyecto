@@ -5,7 +5,7 @@ import path from "path";
 import { create } from 'express-handlebars';
 import session from "express-session";
 import morgan from "morgan";
-import passport from "passport";
+import passport, { Passport } from "passport";
 import "./passport/local-auth";
 import flash from "connect-flash";
 
@@ -47,7 +47,6 @@ app.use((req, res, next) => {
   res.locals.user = req.user || null;
   next();
 });
-
 
 
 //Routes
