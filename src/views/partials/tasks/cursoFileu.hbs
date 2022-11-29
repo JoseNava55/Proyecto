@@ -1,0 +1,30 @@
+{{#if cursos}}
+<table class="table table-bordered table-hover table-dark">
+    <thead>
+        <tr>
+            <th>N.</th>
+            <th>Titulo</th>
+            <th>Descripcion</th>
+            <th>Costo</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each cursos}}
+        <tr>
+            <td>{{@index}}</td>
+            <td>{{title}}</td>
+            <td>{{description}}</td>    
+            <td>{{pricing}}</td>    
+        </tr>  
+    {{/each}}
+    </tbody>
+</table>
+{{else}}
+     <div class="h-100 d-flex align-items-center justify-content-center">
+      <div class="text-center text-black">
+      <h1>No hay cursos</h1>
+      <i class="fa fa-10x fa-pen-to-square" aria-hidden="true" style="color:rgb(1, 0, 0);"></i>
+      </div>
+
+  </div>
+{{/if}}
