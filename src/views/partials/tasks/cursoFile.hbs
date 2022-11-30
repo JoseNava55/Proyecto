@@ -7,6 +7,7 @@
             <th>Titulo</th>
             <th>Descripcion</th>
             <th>Costo</th>
+            <th>Introduccion al curso</th>
             <th>Accion</th>
         </tr>
     </thead>
@@ -17,7 +18,7 @@
             <td>{{title}}</td>
             <td>{{description}}</td>    
             <td>{{pricing}}</td>  
-          
+            <td><a href="{{video}}"><i class="fa fa-solid fa-5x fa-video"></i></a></td>
         <td><a href="/edit/{{_id}}" class="btn btn-info">Editar</a>
             <a href="/delete/{{_id}}" class="btn btn-danger">Eliminar</a> </td>
             
@@ -27,16 +28,12 @@
     {{/each}} 
 </table>
 {{else}}
-     <div class="h-100 d-flex align-items-center justify-content-center">
-      <div class="text-center text-black">
+     <div class="h-100 d-flex align-items-center justify-content-center bg-dark">
+      <div class="text-center text-white">
       <h1>No hay cursos</h1>
-      <i class="fa fa-10x fa-pen-to-square" aria-hidden="true" style="color:rgb(1, 0, 0);"></i>
+      <i class="fa fa-10x fa-pen-to-square" aria-hidden="true" style="color:rgb(255, 255, 255);"></i>
       </div>
 
   </div>
 {{/if}}
- {{#each images}}
-
-        <img class="someClass" src="{{path}}" width="100px"> 
-  {{/each}}  
  

@@ -14,6 +14,7 @@ router.get('/about',(req, res, next)=>{
 
 router.get('/cursos',isAuthenticated,async(req, res, next)=>{
   const cursos = await Curso.find().lean();
+
   res.render('cursos',{cursos:cursos});
 });
 
@@ -65,8 +66,10 @@ const curso = await Curso.findById(req.params.id).lean()
 });
 
 router.post("/edit/:id",async(req,res)=>{
-  const{id} = req.params
-  await Curso.findByIdAndUpdate(id, req.body)
+  console.log(req.params.id);
+  const path = 'uploads/' + req.file.filename;
+  const {title, description,pricing,video} = req.body;
+  await Curso.findByIdAndUpdate(req.params.id,{ title, description,pricing,path,video})
   res.redirect('/adminp');
 })
 

@@ -3,7 +3,7 @@
         <div class="col-md-5 offset-md-3">
             <div class="card card-body bg-dark p-4 text-white rounded-0">
                 <h1>Editar Curso</h1>
-                 <form action="/edit/{{curso._id}}" method="POST">
+                 <form action="/edit/{{curso._id}}" method="POST" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="title">Titulo</label>
                         <input type="text" name="title" placeholder="Ingresa un titulo" value="{{task.title}}" class="form-control rounded-0 bg-dark text-white" >
@@ -16,6 +16,14 @@
                     <label for="title">Costo</label>
                     <input type="number" name="pricing" placeholder="Ingresa un precio" id="title" class="form-control rounded-0 bg-dark text-white">
                     </div>
+                     <div>
+                        <label for="title">Imagen</label>
+                        <input type="file" name="image" class="form-control rounded-0 bg-dark text-white">
+                    </div>
+                     <div>
+                        <label for="title">Video Introductorio</label>
+                        <input type="text" name="video" placeholder="Ingresa un enlace" id="title" class="form-control rounded-0 bg-dark text-white">
+                        </div>
                     <button class="btn btn-outline-success btn-sm mt-2">Guardar</button>    
                 </form>
             </div>
