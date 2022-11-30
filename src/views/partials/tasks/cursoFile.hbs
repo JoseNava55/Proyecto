@@ -1,8 +1,9 @@
+
 {{#if cursos}}
 <table class="table table-bordered table-hover table-dark">
     <thead>
         <tr>
-            <th>N.</th>
+            <th>Curso</th>
             <th>Titulo</th>
             <th>Descripcion</th>
             <th>Costo</th>
@@ -12,16 +13,18 @@
     <tbody>
         {{#each cursos}}
         <tr>
-            <td>{{@index}}</td>
+            <td><img class="someClass" src="{{path}}" width="100px"> </td> 
             <td>{{title}}</td>
             <td>{{description}}</td>    
-            <td>{{pricing}}</td>    
+            <td>{{pricing}}</td>  
+          
         <td><a href="/edit/{{_id}}" class="btn btn-info">Editar</a>
             <a href="/delete/{{_id}}" class="btn btn-danger">Eliminar</a> </td>
             
         </tr>  
-    {{/each}}
+        
     </tbody>
+    {{/each}} 
 </table>
 {{else}}
      <div class="h-100 d-flex align-items-center justify-content-center">
@@ -32,3 +35,8 @@
 
   </div>
 {{/if}}
+ {{#each images}}
+
+        <img class="someClass" src="{{path}}" width="100px"> 
+  {{/each}}  
+ 

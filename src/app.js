@@ -8,8 +8,14 @@ import morgan from "morgan";
 import passport, { Passport } from "passport";
 import "./passport/local-auth";
 import flash from "connect-flash";
+import multer from "multer";
 
-
+const storage=multer.diskStorage({
+  destination: path.join(__dirname, "public/uploads"),
+  filename:(req,file,cb)=>{
+    cb(null,file.originalname)
+  }
+})
 
 const app = express();
 
@@ -48,7 +54,10 @@ app.use((req, res, next) => {
   next();
 });
 
-
+app.use(multer({
+  storage,
+  dest: path.join(__dirname, "public/uploads")
+}).single("image"));
 //Routes
 app.use(indexRoutes);
 

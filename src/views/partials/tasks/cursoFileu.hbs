@@ -2,7 +2,7 @@
 <table class="table table-bordered table-hover table-dark">
     <thead>
         <tr>
-            <th>N.</th>
+            <th>Curso</th>
             <th>Titulo</th>
             <th>Descripcion</th>
             <th>Costo</th>
@@ -11,10 +11,10 @@
     <tbody>
         {{#each cursos}}
         <tr>
-            <td>{{@index}}</td>
+            <td><img class="someClass" src="{{path}}" width="100px"> </td> 
             <td>{{title}}</td>
             <td>{{description}}</td>    
-            <td>{{pricing}}</td>    
+            <td>{{pricing}}</td>
         </tr>  
     {{/each}}
     </tbody>

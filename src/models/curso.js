@@ -15,7 +15,8 @@ const cursoSchema = new Schema({
     pricing:{
         type:Number,
         require: true
-    } 
+    },
+    path:{type:String}
 })
 
 module.exports= mongoose.model('curso',cursoSchema);

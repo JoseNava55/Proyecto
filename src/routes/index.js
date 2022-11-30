@@ -4,7 +4,6 @@ import {renderSignUpForm,signup,renderSigninForm,signin,logout} from "../control
 const passport= require('passport');
 import Curso from "../models/curso"
 
-
 router.get('/',(req, res, next)=>{
   res.render('index');
 });
@@ -47,10 +46,11 @@ router.get('/adminin',async(req, res, next)=>{
 });
 router.get('/adminp',async(req, res, next)=>{
   const cursos = await Curso.find().lean();
-    res.render('adminp',{cursos:cursos});
+    res.render('adminp',{cursos});
 });
 router.post('/adminp',async(req, res, next)=>{
         const curso =Curso(req.body)
+        curso.path='uploads/' + req.file.filename;
         const cursoSaved = await curso.save();
         console.log(cursoSaved);
         res.redirect('/adminp');
