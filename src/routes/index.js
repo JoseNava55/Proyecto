@@ -14,7 +14,6 @@ router.get('/about',(req, res, next)=>{
 
 router.get('/cursos',isAuthenticated,async(req, res, next)=>{
   const cursos = await Curso.find().lean();
-
   res.render('cursos',{cursos:cursos});
 });
 
@@ -45,13 +44,14 @@ router.post('/adminin',async(req, res, next)=>{
 router.get('/adminin',async(req, res, next)=>{
   res.render('adminin');
 });
+
 router.get('/adminp',async(req, res, next)=>{
   const cursos = await Curso.find().lean();
     res.render('adminp',{cursos});
 });
 router.post('/adminp',async(req, res, next)=>{
         const curso =Curso(req.body)
-        curso.path='uploads/' + req.file.filename;
+        curso.path='/uploads/' + req.file.filename;
         const cursoSaved = await curso.save();
         console.log(cursoSaved);
         res.redirect('/adminp');
@@ -67,7 +67,7 @@ const curso = await Curso.findById(req.params.id).lean()
 
 router.post("/edit/:id",async(req,res)=>{
   console.log(req.params.id);
-  const path = 'uploads/' + req.file.filename;
+  const path = '/uploads/' + req.file.filename;
   const {title, description,pricing,video} = req.body;
   await Curso.findByIdAndUpdate(req.params.id,{ title, description,pricing,path,video})
   res.redirect('/adminp');
@@ -78,6 +78,18 @@ router.get("/delete/:id",async(req,res)=>{
   await Curso.findByIdAndDelete(id)
   res.redirect('/adminp');
 })
+
+router.get('/compra/:id',isAuthenticated,async(req, res, next)=>{
+  const cursos = await Curso.findById(req.params.id);
+  console.log(cursos)
+  res.render('compra',{cursos});
+});
+
+router.post('/compra/:id',async(req, res, next)=>{
+  req.flash("success_msg", "Compra exitosa");
+  res.redirect('/cursos');
+});
+
 
 function isAuthenticated (req, res, next) {
     if (req.isAuthenticated()) {

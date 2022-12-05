@@ -17,7 +17,7 @@ const cursoSchema = new Schema({
         require: true
     },
     path:{type:String},
-    video:{type:String}
+    video:{type:String},
 })
 
 module.exports= mongoose.model('curso',cursoSchema);
